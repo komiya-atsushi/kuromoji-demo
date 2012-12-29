@@ -1,0 +1,57 @@
+@(message: String)
+
+@scripts = {
+    <script src='@routes.Application.jsRoutes()' type="text/javascript"></script>
+    <script src='@routes.Assets.at("javascripts/index.js")' type="text/javascript"></script>
+}
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("Kuromoji demo webapp", scripts) {
+    <form class="form-horizontal well">
+        <h2>入力フォーム</h2>
+        <hr>
+
+        <div class="control-group">
+            <label class="control-label" for="targetText">文章</label>
+            <div class="controls">
+                <textarea id="targetText" placeholder="ここに文章を入力する"></textarea>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">分かち書きモード</label>
+            <div class="controls">
+                <label class="radio">
+                    <input type="radio" name="segmentationMode" id="normal" value="normal" checked>
+                    normal
+                </label>
+                <label class="radio">
+                    <input type="radio" name="segmentationMode" id="search" value="search">
+                    search
+                </label>
+                <label class="radio">
+                    <input type="radio" name="segmentationMode" id="extended" value="extended">
+                    extended
+                </label>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="control-group">
+            <div class="controls">
+                <input id="doTextSegmentation" type="button" class="btn" value="形態素解析をする">
+            </div>
+        </div>
+    </form>
+
+
+    <div class="well">
+        <h2>形態素解析結果</h2>
+        <hr>
+
+        <div id="resultArea"></div>
+    </div>
+}
